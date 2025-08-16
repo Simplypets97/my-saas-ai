@@ -30,6 +30,12 @@ export async function MainNav() {
             Pricing
           </Link>
           <Link
+            href="/dashboard"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Tools-Dashboard
+          </Link>
+          <Link
             href="/blog"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
@@ -62,7 +68,7 @@ function SignInButton() {
   )
 }
 
-// A separate component for the User Menu
+// --- THIS IS THE UPDATED COMPONENT ---
 function UserMenu({ user }) {
   return (
     <DropdownMenu>
@@ -84,16 +90,24 @@ function UserMenu({ user }) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        
+        {/* The Dashboard link should be here */}
         <DropdownMenuItem asChild>
-            {/* We use a form for sign out to make it a POST request */}
-            <form action={async () => {
-                "use server"
-                await signOut()
+          <Link href="/dashboard">Dashboard</Link>
+        </DropdownMenuItem>
+        
+        <DropdownMenuSeparator />
+        
+        <DropdownMenuItem asChild>
+          <form 
+            action={async () => {
+              "use server"
+              await signOut()
             }}
             className="w-full"
-            >
-                <button type="submit" className="w-full text-left">Log out</button>
-            </form>
+          >
+            <button type="submit" className="w-full text-left">Log out</button>
+          </form>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
